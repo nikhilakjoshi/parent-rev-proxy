@@ -28,7 +28,12 @@ const config = {
           destination: "https://child-rev-proxy.vercel.app/iframe/:path*",
         },
       ],
-      afterFiles: [],
+      afterFiles: [
+        {
+          source: "/_next/:path*",
+          destination: "https://child-rev-proxy.vercel.app/_next/:path*",
+        },
+      ],
       fallback: [],
     };
   },
