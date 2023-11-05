@@ -31,8 +31,8 @@ const config = {
       afterFiles: [],
       fallback: [
         {
-          source: "/_next/:path*",
-          destination: "https://child-rev-proxy.vercel.app/_next/:path*",
+          source: "/:path*",
+          destination: "https://child-rev-proxy.vercel.app/:path*",
         },
       ],
     };
