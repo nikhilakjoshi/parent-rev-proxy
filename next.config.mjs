@@ -28,8 +28,9 @@ const config = {
           destination: "https://child-rev-proxy.vercel.app/iframe/:path*",
         },
         {
-          source: "/:path*",
-          destination: "https://child-rev-proxy.vercel.app/:path*",
+          source: "/_next/static/css/:path*",
+          destination:
+            "https://child-rev-proxy.vercel.app/_next/static/css/:path*",
           has: [
             {
               type: "header",
