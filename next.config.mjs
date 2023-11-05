@@ -23,14 +23,8 @@ const config = {
     return {
       beforeFiles: [
         {
-          source: "/iframe/:path*",
-          // destination: "http://localhost:3001/iframe/:path*",
-          destination: "https://child-rev-proxy.vercel.app/iframe/:path*",
-        },
-        {
-          source: "/_next/static/css/:path*",
-          destination:
-            "https://child-rev-proxy.vercel.app/_next/static/css/:path*",
+          source: "/_next/static/:path*",
+          destination: "https://child-rev-proxy.vercel.app/_next/static/:path*",
           has: [
             {
               type: "header",
@@ -38,6 +32,11 @@ const config = {
               key: "Referer",
             },
           ],
+        },
+        {
+          source: "/iframe/:path*",
+          // destination: "http://localhost:3001/iframe/:path*",
+          destination: "https://child-rev-proxy.vercel.app/iframe/:path*",
         },
       ],
       afterFiles: [],
