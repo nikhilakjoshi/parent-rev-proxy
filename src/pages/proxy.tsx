@@ -17,10 +17,6 @@ export default function Proxy() {
       "https://child-rev-proxy.vercel.app/api/saml",
       {
         method: "POST",
-        // headers: {
-        //   Accept: "application/json",
-        //   "Content-Type": "application/json",
-        // },
         credentials: "include",
       },
     );
@@ -33,23 +29,29 @@ export default function Proxy() {
     };
   };
   useEffect(() => {
-    fetchSamlToken()
-      .then(({ samlToken }) => {
-        if (samlToken)
-          router
-            .replace(
-              `https://parent-rev-proxy.vercel.app/iframe/root/${samlToken}`,
-            )
-            .then((a) => {
-              console.log("success", a);
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    let triggered = true;
+    if (triggered) {
+      fetchSamlToken()
+        .then(({ samlToken }) => {
+          if (samlToken)
+            router
+              .replace(
+                `https://parent-rev-proxy.vercel.app/iframe/root/${samlToken}`,
+              )
+              .then((a) => {
+                console.log("success", a);
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          triggered = false;
+        });
+    }
   }, [router]);
   return (
     <React.Fragment>
