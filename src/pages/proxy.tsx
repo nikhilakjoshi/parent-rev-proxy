@@ -28,12 +28,29 @@ export default function Proxy() {
       samlToken?: string;
       message?: string;
     };
-    if (samlToken)
-      router.replace(
-        `https://parent-rev-proxy.vercel.app/iframe/root/${samlToken}`,
-      );
+    return {
+      samlToken,
+    };
   };
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetchSamlToken()
+      .then(({ samlToken }) => {
+        if (samlToken)
+          router
+            .replace(
+              `https://parent-rev-proxy.vercel.app/iframe/root/${samlToken}`,
+            )
+            .then((a) => {
+              console.log("success", a);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [router]);
   return (
     <React.Fragment>
       <Head>
