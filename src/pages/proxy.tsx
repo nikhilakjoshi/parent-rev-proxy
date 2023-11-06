@@ -17,10 +17,10 @@ export default function Proxy() {
       "https://child-rev-proxy.vercel.app/api/saml",
       {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+        // headers: {
+        //   Accept: "application/json",
+        //   "Content-Type": "application/json",
+        // },
         credentials: "include",
       },
     );
