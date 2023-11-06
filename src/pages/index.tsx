@@ -36,7 +36,7 @@ export default function Home() {
             </span>
           </h2>
         </nav>
-        <section className="grow bg-green-50 px-20 py-4">
+        <section className="flex grow flex-col bg-green-50 px-20 py-4">
           {show && <MyIframe />}
         </section>
       </main>
