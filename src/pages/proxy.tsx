@@ -29,28 +29,24 @@ export default function Proxy() {
     };
   };
   useEffect(() => {
-    let triggered = false;
-    if (!triggered) {
-      triggered = true;
-      fetchSamlToken()
-        .then(({ samlToken }) => {
-          if (samlToken)
-            router
-              .replace(
-                `https://parent-rev-proxy.vercel.app/iframe/root/${samlToken}`,
-              )
-              .then((a) => {
-                console.log("success", a);
-              })
-              .catch((err) => {
-                console.error(err);
-              });
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [router]);
+    fetchSamlToken()
+      .then(({ samlToken }) => {
+        if (samlToken)
+          router
+            .replace(
+              `https://parent-rev-proxy.vercel.app/iframe/root/${samlToken}`,
+            )
+            .then((a) => {
+              console.log("success", a);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
   return (
     <React.Fragment>
       <Head>
