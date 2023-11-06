@@ -23,17 +23,16 @@ const config = {
     return {
       beforeFiles: [
         {
+          source: "/_next/static/:path*",
+          destination: "https://child-rev-proxy.vercel.app/_next/static",
+        },
+        {
           source: "/iframe/:path*",
           // destination: "http://localhost:3001/iframe/:path*",
           destination: "https://child-rev-proxy.vercel.app/iframe/:path*",
         },
       ],
-      afterFiles: [
-        {
-          source: "/_next/static/:path*",
-          destination: "https://child-rev-proxy.vercel.app/_next/static/:path*",
-        },
-      ],
+      afterFiles: [],
       fallback: [],
     };
   },
