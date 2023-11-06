@@ -29,8 +29,9 @@ export default function Proxy() {
     };
   };
   useEffect(() => {
-    let triggered = true;
-    if (triggered) {
+    let triggered = false;
+    if (!triggered) {
+      triggered = true;
       fetchSamlToken()
         .then(({ samlToken }) => {
           if (samlToken)
@@ -47,9 +48,6 @@ export default function Proxy() {
         })
         .catch((err) => {
           console.error(err);
-        })
-        .finally(() => {
-          triggered = false;
         });
     }
   }, [router]);
