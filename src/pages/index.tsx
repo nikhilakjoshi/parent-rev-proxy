@@ -29,7 +29,12 @@ export default function Home() {
       </Head>
       <main className={clsx("flex min-h-screen flex-col", font.className)}>
         <nav className="bg-sky-100 px-20 py-4">
-          <h2 className="text-xl font-semibold">Parent App</h2>
+          <h2 className="text-xl font-semibold">
+            Parent App -{" "}
+            <span className="inline-block rounded bg-gray-300 px-2 py-0.5 font-mono text-gray-700">
+              Reverse Proxy
+            </span>
+          </h2>
         </nav>
         <section className="grow bg-green-50 px-20 py-4">
           {show && <MyIframe />}
