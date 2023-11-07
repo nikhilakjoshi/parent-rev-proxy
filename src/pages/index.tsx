@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Rubik } from "next/font/google";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const MyIframe = dynamic(() => import("./../components/iframe"), {
   ssr: false,
@@ -15,6 +15,12 @@ const font = Rubik({
 
 export default function Home() {
   const [show, setShow] = useState(false);
+  const triggerHello = useCallback(async () => {
+    const resp = await fetch("/api/hello", {
+      method: "POST",
+    });
+    const json = (await resp.json()) as { message: string };
+  }, []);
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
@@ -37,6 +43,22 @@ export default function Home() {
           </h2>
         </nav>
         <section className="flex grow flex-col bg-green-50 px-20 py-4">
+          <div className="my-4 flex items-center gap-8">
+            <button
+              onClick={() => {
+                triggerHello().then(() => console.log("triggered"));
+              }}
+              className="rounded bg-purple-500 px-2 py-1 text-white hover:bg-purple-700"
+            >
+              Trigger API from Parent
+            </button>
+            <div>
+              Request should not have cookie header as calls are going to
+              <span className="inline-block rounded bg-gray-600 px-2 py-0.5 font-mono text-white">
+                /api/*
+              </span>
+            </div>
+          </div>
           {show && <MyIframe />}
         </section>
       </main>
