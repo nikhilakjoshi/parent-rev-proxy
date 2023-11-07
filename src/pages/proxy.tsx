@@ -33,9 +33,7 @@ export default function Proxy() {
       .then(({ samlToken }) => {
         if (samlToken)
           router
-            .replace(
-              `https://parent-rev-proxy.vercel.app/iframe/root/${samlToken}`,
-            )
+            .replace(`https://parent-rev-proxy.vercel.app/banking/${samlToken}`)
             .then((a) => {
               console.log("success", a);
             })
