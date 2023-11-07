@@ -14,7 +14,7 @@ export default function Proxy() {
   const fetchSamlToken = async () => {
     setLoadText("fetching saml token...");
     const samlTokenPromise = await fetch(
-      "https://child-rev-proxy.vercel.app/api/saml",
+      "https://child-rev-proxy.vercel.app/banking/api/saml",
       {
         method: "POST",
         credentials: "include",
