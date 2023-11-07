@@ -46,7 +46,9 @@ export default function Home() {
           <div className="my-4 flex items-center gap-8">
             <button
               onClick={() => {
-                triggerHello().then(() => console.log("triggered"));
+                triggerHello()
+                  .then(() => console.log("triggered"))
+                  .catch((e) => console.error(e));
               }}
               className="rounded bg-purple-500 px-2 py-1 text-white hover:bg-purple-700"
             >
